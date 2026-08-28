@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Happy Raksha Bandhan — For Dona 💌</title>
+<style>
+  :root{
+    --blush:#ffe6ee;
+    --cream:#fff8f1;
+    --lavender:#eee7ff;
+    --rose:#f6b9cf;
+    --rose-deep:#e0789e;
+    --ink:#4a3846;
+    --gold:#cf9f5f;
+    --gold-light:#f1d9a8;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:Georgia, 'Cambria', 'Times New Roman', serif;
+    color:var(--ink);
+    background:var(--cream);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  .sans{font-family:'Segoe UI', 'Helvetica Neue', Arial, sans-serif;}
+  .mono{font-family:'Courier New', Courier, monospace;}
+
+  button{font-family:inherit;cursor:pointer;border:none;outline:none;}
+  button:focus-visible, a:focus-visible{outline:3px solid #7a5cff;outline-offset:3px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  /* ============ APP SHELL ============ */
+  #app{position:relative;width:100%;min-height:100vh;}
+  .page{
+    position:relative;
+    width:100%;
+    min-height:100vh;
+    display:none;
+  }
+  .page.active{display:block;}
+
+  /* ============================================================
+     PAGE 1 — EMOTIONAL
+     ============================================================ */
+  #page1{
+    background:
+      radial-gradient(circle at 20% 10%, rgba(246,185,207,.55), transparent 45%),
+      radial-gradient(circle at 85% 20%, rgba(238,231,255,.6), transparent 50%),
+      radial-gradient(circle at 50% 90%, rgba(255,230,238,.7), transparent 55%),
+      linear-gradient(180deg, var(--cream), var(--blush) 60%, var(--lavender));
+    padding:6vh 5vw 12vh;
+    text-align:center;
+    overflow:hidden;
+  }
+
+  .ambient{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden;}
+  .ambient span{position:absolute;bottom:-10%;opacity:0;animation:floatUp linear infinite;}
+  .ambient .heart-p{font-size:20px;color:var(--rose-deep);opacity:.55;}
+  .ambient .petal-p{font-size:18px;color:#f2a6c6;opacity:.5;}
+  .ambient .spark-p{font-size:12px;color:var(--gold);opacity:.6;}
+  @keyframes floatUp{
+    0%{transform:translateY(0) translateX(0) rotate(0deg);opacity:0;}
+    10%{opacity:.7;}
+    90%{opacity:.5;}
+    100%{transform:translateY(-115vh) translateX(20px) rotate(220deg);opacity:0;}
+  }
+
+  .stage-wrap{
+    position:relative;z-index:2;
+    max-width:640px;margin:0 auto;
+    display:flex;flex-direction:column;align-items:center;gap:26px;
+  }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(22px);
+    transition:opacity 1s ease, transform 1s ease;
+  }
+  .reveal.show{opacity:1;transform:translateY(0);}
+
+  .glow-heart{
+    width:54px;height:54px;
+    filter:drop-shadow(0 0 14px rgba(224,120,158,.85));
+    animation:pulseHeart 2.4s ease-in-out infinite;
+  }
+  @keyframes pulseHeart{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.14);}
+  }
+
+  .sparkle-row{display:flex;gap:18px;}
+  .sparkle-row svg{width:20px;height:20px;animation:twinkle 1.8s ease-in-out infinite;}
+  .sparkle-row svg:nth-child(2){animation-delay:.3s;}
+  .sparkle-row svg:nth-child(3){animation-delay:.6s;}
+  @keyframes twinkle{
+    0%,100%{opacity:.25;transform:scale(.8) rotate(0deg);}
+    50%{opacity:1;transform:scale(1.15) rotate(20deg);}
+  }
+
+  .rakhi-illustration{width:130px;height:auto;filter:drop-shadow(0 6px 18px rgba(207,159,95,.35));}
+
+  .glass-card{
+    background:rgba(255,255,255,.45);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,.6);
+    border-radius:26px;
+    padding:28px 30px;
+    box-shadow:0 20px 60px -20px rgba(210,120,160,.35);
+  }
+
+  .eyebrow{
+    font-family:'Segoe UI', sans-serif;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-size:12px;
+    color:var(--rose-deep);
+    opacity:.85;
+  }
+
+  .h-script{
+    font-family:'Brush Script MT','Segoe Script', cursive, Georgia, serif;
+    font-style:italic;
+    font-size:clamp(24px,5vw,34px);
+    color:var(--ink);
+  }
+
+  .h-main{
+    font-size:clamp(34px,8vw,58px);
+    font-weight:700;
+    background:linear-gradient(135deg, var(--rose-deep), var(--gold), var(--rose-deep));
+    background-size:200% auto;
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    animation:shimmer 6s linear infinite;
+    margin:0;
+  }
+  @keyframes shimmer{
+    0%{background-position:0% center;}
+    100%{background-position:200% center;}
+  }
+
+  .h-from{
+    font-size:clamp(16px,3.2vw,20px);
+    color:var(--ink);
+    opacity:.85;
+  }
+
+  .message-card p{
+    font-size:clamp(16px,2.6vw,19px);
+    line-height:1.85;
+    margin:0;
+    color:var(--ink);
+  }
+  .message-card p + p{margin-top:14px;}
+  .message-card .en{font-family:'Segoe UI', sans-serif;font-style:normal;}
+
+  .made-with{
+    font-family:'Segoe UI', sans-serif;
+    font-size:14px;
+    letter-spacing:1px;
+    color:var(--rose-deep);
+    opacity:.85;
+  }
+
+  /* --- cat illustration (original, not a copied meme) --- */
+  .cat-wrap{width:170px;height:170px;position:relative;}
+  .cat-wrap svg{width:100%;height:100%;}
+  .cat-eye{animation:blink 4.2s ease-in-out infinite;transform-origin:center;}
+  .cat-eye.right{animation-delay:.05s;}
+  @keyframes blink{
+    0%,88%,100%{transform:scaleY(1);}
+    92%{transform:scaleY(.1);}
+  }
+  .cat-tear{opacity:0;animation:tearDrop 4.2s ease-in infinite;}
+  @keyframes tearDrop{
+    0%,55%{opacity:0;transform:translateY(0) scale(1);}
+    62%{opacity:.9;}
+    85%{opacity:.6;transform:translateY(22px) scale(.7);}
+    100%{opacity:0;transform:translateY(26px) scale(.4);}
+  }
+  .cat-mouth-cry{stroke-dasharray:40;stroke-dashoffset:0;}
+
+  /* suspicious / happy variants toggle via class on wrapper */
+  .cat-wrap[data-mood="suspicious"] .cat-mouth-neutral,
+  .cat-wrap[data-mood="suspicious"] .cat-mouth-happy,
+  .cat-wrap[data-mood="suspicious"] .cat-brow-flat{display:none;}
+  .cat-wrap[data-mood="suspicious"] .cat-brow-suspicious,
+  .cat-wrap[data-mood="suspicious"] .cat-mouth-suspicious{display:block;}
+
+  .cat-wrap[data-mood="happy"] .cat-mouth-neutral,
+  .cat-wrap[data-mood="happy"] .cat-mouth-suspicious,
+  .cat-wrap[data-mood="happy"] .cat-brow-suspicious{display:none;}
+  .cat-wrap[data-mood="happy"] .cat-mouth-happy,
+  .cat-wrap[data-mood="happy"] .cat-eye-happy{display:block;}
+  .cat-wrap[data-mood="happy"] .cat-eye-normal{display:none;}
+
+  .cat-mouth-suspicious, .cat-mouth-happy, .cat-brow-suspicious, .cat-eye-happy{display:none;}
+
+  .enough{
+    font-family:'Segoe UI', sans-serif;
+    font-size:15px;
+    opacity:.7;
+  }
+
+  .btn-glow{
+    position:relative;
+    padding:16px 36px;
+    border-radius:50px;
+    background:linear-gradient(135deg, var(--rose-deep), var(--gold));
+    color:#fff;
+    font-size:16px;
+    font-weight:600;
+    font-family:'Segoe UI', sans-serif;
+    letter-spacing:.5px;
+    box-shadow:0 12px 30px -8px rgba(224,120,158,.7);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .btn-glow:hover{transform:translateY(-3px);box-shadow:0 18px 36px -8px rgba(224,120,158,.85);}
+  .btn-glow:active{transform:translateY(0);}
+
+  /* heart burst + sparkle transition overlay */
+  #burstLayer{position:fixed;inset:0;pointer-events:none;z-index:50;}
+  .burst-heart{position:absolute;font-size:22px;color:var(--rose-deep);animation:burstOut .9s ease-out forwards;}
+  @keyframes burstOut{
+    0%{transform:translate(0,0) scale(.4);opacity:1;}
+    100%{transform:translate(var(--tx), var(--ty)) scale(1.2);opacity:0;}
+  }
+  #transitionVeil{
+    position:fixed;inset:0;z-index:49;
+    background:radial-gradient(circle, #fff 0%, var(--blush) 60%);
+    opacity:0;pointer-events:none;
+    transition:opacity .5s ease;
+  }
+  #transitionVeil.show{opacity:1;}
+
+  /* ============================================================
+     PAGE 2 — GIFT TAX DEPARTMENT
+     ============================================================ */
+  #page2{
+    background:
+      repeating-linear-gradient(135deg, rgba(0,0,0,.02) 0 2px, transparent 2px 6px),
+      linear-gradient(180deg,#101a33,#16233f 40%,#f4ecd8 40%,#f4ecd8);
+    min-height:100vh;
+    padding-bottom:10vh;
+  }
+  .gtd-header{
+    background:linear-gradient(135deg,#101a33,#1b2a4a);
+    color:#f4ecd8;
+    padding:34px 6vw 46px;
+    text-align:center;
+    border-bottom:6px solid var(--gold);
+    position:relative;
+    overflow:hidden;
+  }
+  .gtd-header::before{
+    content:"";
+    position:absolute;inset:0;
+    background:repeating-linear-gradient(45deg, rgba(193,18,31,.12) 0 14px, transparent 14px 28px);
+  }
+  .gtd-title{
+    font-family:'Courier New', Courier, monospace;
+    font-size:clamp(24px,5.5vw,38px);
+    font-weight:700;
+    letter-spacing:2px;
+    margin:0 0 8px;
+    position:relative;
+    animation:sirenGlow 1.6s ease-in-out infinite;
+  }
+  @keyframes sirenGlow{
+    0%,100%{text-shadow:0 0 10px rgba(193,18,31,.7);}
+    50%{text-shadow:0 0 22px rgba(255,80,80,.95);}
+  }
+  .gtd-sub{
+    font-family:'Segoe UI', sans-serif;
+    font-size:clamp(13px,2.4vw,16px);
+    letter-spacing:2px;
+    text-transform:uppercase;
+    opacity:.85;
+    position:relative;
+  }
+
+  .gtd-body{max-width:760px;margin:0 auto;padding:0 5vw;position:relative;z-index:2;}
+
+  .case-card{
+    background:#fbf6e8;
+    border:2px solid #1b2a4a;
+    border-radius:6px;
+    margin-top:-32px;
+    padding:26px 26px 22px;
+    box-shadow:0 22px 40px -16px rgba(0,0,0,.35);
+    font-family:'Courier New', Courier, monospace;
+    position:relative;
+  }
+  .case-card::before{
+    content:"CONFIDENTIAL";
+    position:absolute;top:14px;right:-38px;
+    background:#c1121f;color:#fff;
+    font-size:11px;letter-spacing:2px;
+    padding:3px 40px;
+    transform:rotate(35deg);
+    font-family:'Segoe UI', sans-serif;
+    box-shadow:0 2px 6px rgba(0,0,0,.3);
+  }
+  .case-card h2{
+    margin:0 0 14px;font-size:14px;letter-spacing:3px;color:#1b2a4a;
+    border-bottom:2px dashed #1b2a4a;padding-bottom:10px;
+  }
+  .case-row{display:flex;justify-content:space-between;gap:12px;padding:6px 0;font-size:14px;flex-wrap:wrap;}
+  .case-row b{color:#1b2a4a;}
+  .status-pill{
+    color:#c1121f;font-weight:700;
+    animation:blinkStatus 1.3s steps(1) infinite;
+  }
+  @keyframes blinkStatus{0%,49%{opacity:1;}50%,100%{opacity:.35;}}
+
+  .status-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:14px;
+    margin-top:26px;
+  }
+  @media(max-width:520px){.status-grid{grid-template-columns:1fr;}}
+  .status-card{
+    background:#fff;border-radius:10px;padding:16px 14px;
+    border-left:6px solid #6b7a4f;
+    box-shadow:0 8px 20px -10px rgba(0,0,0,.25);
+    font-family:'Segoe UI', sans-serif;
+    opacity:0;transform:translateY(14px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .status-card.show{opacity:1;transform:translateY(0);}
+  .status-card.bad{border-left-color:#c1121f;}
+  .status-card .icon{font-size:22px;margin-right:6px;}
+  .status-card .label{font-weight:600;font-size:14.5px;color:#1b2a4a;}
+
+  .cat-mini{width:96px;height:96px;margin:26px auto 6px;display:block;}
+
+  .charges-title{
+    font-family:'Courier New',monospace;
+    font-size:16px;letter-spacing:2px;color:#1b2a4a;
+    margin:30px 0 10px;text-align:center;
+  }
+  .charges-list{
+    background:#fff;border:1px dashed #1b2a4a;border-radius:8px;
+    padding:18px 22px;font-family:'Segoe UI', sans-serif;font-size:15px;
+    line-height:1.9;color:#2c2c2c;
+  }
+  .charges-list ol{margin:0;padding-left:20px;}
+
+  .action-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:26px;}
+  .btn-gtd{
+    font-family:'Segoe UI', sans-serif;font-weight:600;font-size:15px;
+    padding:14px 24px;border-radius:8px;
+    box-shadow:0 10px 22px -10px rgba(0,0,0,.35);
+    transition:transform .2s ease;
+  }
+  .btn-gtd:hover{transform:translateY(-2px);}
+  .btn-innocent{background:#fff;color:#1b2a4a;border:2px solid #1b2a4a !important;}
+  .btn-settle{background:linear-gradient(135deg,#c1121f,#8c0f1a);color:#fff;}
+
+  .shake{animation:shakeBtn .5s ease;}
+  @keyframes shakeBtn{
+    0%,100%{transform:translateX(0);}
+    20%{transform:translateX(-8px) rotate(-2deg);}
+    40%{transform:translateX(7px) rotate(2deg);}
+    60%{transform:translateX(-5px);}
+    80%{transform:translateX(4px);}
+  }
+
+  .response-box{
+    margin-top:18px;text-align:center;font-family:'Segoe UI', sans-serif;
+    background:#fff2f2;border:1px solid #c1121f;border-radius:8px;padding:14px 18px;
+    display:none;
+  }
+  .response-box.show{display:block;}
+  .response-box p{margin:4px 0;color:#7a0d17;font-weight:600;}
+
+  .investigate-box{text-align:center;font-family:'Segoe UI', sans-serif;margin-top:24px;display:none;}
+  .investigate-box.show{display:block;}
+  .spinner{
+    width:44px;height:44px;border-radius:50%;
+    border:5px solid #d8cfae;border-top-color:#1b2a4a;
+    margin:0 auto 14px;animation:spin 1s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  .verdict-box{
+    display:none;text-align:center;margin-top:24px;
+    background:#fff;border:2px solid var(--gold);border-radius:12px;
+    padding:26px 20px;font-family:'Segoe UI', sans-serif;
+    box-shadow:0 14px 32px -14px rgba(0,0,0,.3);
+  }
+  .verdict-box.show{display:block;}
+  .verdict-box .vlabel{letter-spacing:2px;font-size:13px;color:#6b7a4f;text-transform:uppercase;}
+  .verdict-box .vamount{
+    font-family:Georgia, serif;font-size:46px;font-weight:700;color:#8c0f1a;margin:8px 0;
+  }
+  .verdict-box .vnote{font-size:14px;color:#555;margin-bottom:18px;}
+
+  .final-box{
+    display:none;text-align:center;margin-top:24px;padding:38px 20px 30px;
+    background:linear-gradient(160deg,#fff8f1,#ffe6ee);
+    border-radius:16px;border:2px solid var(--rose-deep);
+    font-family:'Segoe UI', sans-serif;
+    position:relative;overflow:hidden;
+  }
+  .final-box.show{display:block;}
+  .final-box h3{font-family:Georgia,serif;font-size:30px;color:#8c0f1a;margin:6px 0;}
+  .final-box .fh1{font-size:22px;color:#1b2a4a;margin:0 0 6px;}
+  .final-box .fsign{margin-top:16px;font-style:italic;color:var(--rose-deep);}
+
+  .replay-btn{
+    margin-top:20px;background:none;color:#1b2a4a;font-family:'Segoe UI', sans-serif;
+    font-size:14px;text-decoration:underline;opacity:.8;
+  }
+  .replay-btn:hover{opacity:1;}
+
+  .gtd-footer{
+    text-align:center;margin-top:36px;font-family:'Courier New',monospace;
+    font-size:12px;color:#1b2a4a;opacity:.65;
+  }
+
+  #confettiLayer{position:fixed;inset:0;pointer-events:none;z-index:60;overflow:hidden;}
+  .confetto{position:absolute;top:-5%;animation:confettiFall linear forwards;}
+  @keyframes confettiFall{
+    0%{transform:translateY(0) rotate(0deg);opacity:1;}
+    100%{transform:translateY(110vh) rotate(540deg);opacity:.85;}
+  }
+
+  @media(max-width:480px){
+    .glass-card{padding:22px 18px;}
+    .case-card{margin-top:-22px;}
+  }
+</style>
+</head>
+<body>
+
+<div id="app">
+  <div class="ambient" id="ambient"></div>
+  <div id="transitionVeil"></div>
+  <div id="burstLayer"></div>
+  <div id="confettiLayer"></div>
+
+  <!-- ============ PAGE 1 ============ -->
+  <section class="page active" id="page1">
+    <div class="stage-wrap">
+
+      <svg class="reveal glow-heart" data-delay="200" viewBox="0 0 32 29" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#e0789e" d="M16 28.5s-13-8.35-15-16.9C-.4 5.7 3.9 1 8.7 1c3 0 5.6 1.8 7.3 4.4C17.7 2.8 20.3 1 23.3 1c4.8 0 9.1 4.7 7.7 10.6C29 20.15 16 28.5 16 28.5z"/>
+      </svg>
+
+      <div class="reveal sparkle-row" data-delay="900">
+        <svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 0l2.2 8.8L23 12l-8.8 2.2L12 24l-2.2-9.8L1 12l8.8-1.2z"/></svg>
+        <svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 0l2.2 8.8L23 12l-8.8 2.2L12 24l-2.2-9.8L1 12l8.8-1.2z"/></svg>
+        <svg viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 0l2.2 8.8L23 12l-8.8 2.2L12 24l-2.2-9.8L1 12l8.8-1.2z"/></svg>
+      </div>
+
+      <svg class="reveal rakhi-illustration" data-delay="1600" viewBox="0 0 140 150" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 8 C 40 30, 40 60, 20 90" stroke="var(--gold)" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M120 8 C 100 30, 100 60, 120 90" stroke="var(--gold)" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="70" cy="60" r="34" fill="url(#g1)" stroke="var(--gold)" stroke-width="3"/>
+        <circle cx="70" cy="60" r="20" fill="#fff" opacity=".85"/>
+        <path fill="#e0789e" d="M70 50c-4-6-14-4-14 4 0 7 14 16 14 16s14-9 14-16c0-8-10-10-14-4z"/>
+        <g stroke="var(--gold)" stroke-width="2.5">
+          <line x1="70" y1="94" x2="70" y2="130"/>
+          <line x1="60" y1="100" x2="55" y2="140"/>
+          <line x1="80" y1="100" x2="85" y2="140"/>
+        </g>
+        <circle cx="70" cy="132" r="4" fill="var(--gold)"/>
+        <circle cx="55" cy="142" r="4" fill="var(--gold)"/>
+        <circle cx="85" cy="142" r="4" fill="var(--gold)"/>
+        <defs>
+          <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="var(--gold-light)"/>
+            <stop offset="100%" stop-color="var(--gold)"/>
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <div class="reveal" data-delay="2500">
+        <div class="eyebrow">a little something</div>
+        <div class="h-script">For My Dearest Sister ♡</div>
+      </div>
+
+      <h1 class="reveal h-main" data-delay="3400">Happy Raksha Bandhan</h1>
+
+      <div class="reveal h-from" data-delay="4300">from your Chhota Bhai, Alraza 🫶🏻</div>
+
+      <div class="reveal glass-card message-card" data-delay="5300">
+        <p>Rakhi sirf ek dhaaga nahi hoti...<br>kabhi-kabhi ye woh rishta hota hai<br>jise lafzon mein explain nahi kiya ja sakta.</p>
+        <p class="en">No matter how much we tease each other, you'll always have a special place in my heart. ❤️</p>
+      </div>
+
+      <div class="reveal made-with" data-delay="6600">Made with love, memories &amp; a little bit of sibling drama.</div>
+
+      <div class="reveal cat-wrap" data-delay="7400" data-mood="cry" id="cat1">
+        <svg viewBox="0 0 200 200">
+          <ellipse cx="100" cy="115" rx="72" ry="62" fill="#fff2e6" stroke="#e0b88a" stroke-width="3"/>
+          <path d="M40 70 L58 25 L82 62 Z" fill="#fff2e6" stroke="#e0b88a" stroke-width="3"/>
+          <path d="M160 70 L142 25 L118 62 Z" fill="#fff2e6" stroke="#e0b88a" stroke-width="3"/>
+          <path d="M52 62 L60 40 L74 58 Z" fill="#f6b9cf"/>
+          <path d="M148 62 L140 40 L126 58 Z" fill="#f6b9cf"/>
+          <ellipse class="cat-eye" cx="75" cy="112" rx="9" ry="12" fill="#4a3846"/>
+          <ellipse class="cat-eye right" cx="125" cy="112" rx="9" ry="12" fill="#4a3846"/>
+          <ellipse cx="60" cy="135" rx="10" ry="7" fill="#f6b9cf" opacity=".7"/>
+          <ellipse cx="140" cy="135" rx="10" ry="7" fill="#f6b9cf" opacity=".7"/>
+          <path d="M94 128 q6 6 12 0" stroke="#4a3846" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path class="cat-tear" d="M75 126 q-6 10 0 18 q6 -8 0 -18 Z" fill="#a9d3f5"/>
+          <path d="M40 105 h-24 M40 112 h-22 M40 119 h-24" stroke="#e0b88a" stroke-width="2" stroke-linecap="round"/>
+          <path d="M160 105 h24 M160 112 h22 M160 119 h24" stroke="#e0b88a" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <div class="reveal enough" data-delay="8400">Okay... enough emotions. 👀</div>
+
+      <button class="reveal btn-glow" data-delay="9200" id="continueBtn">Continue to your surprise →</button>
+
+    </div>
+  </section>
+
+  <!-- ============ PAGE 2 ============ -->
+  <section class="page" id="page2">
+    <header class="gtd-header">
+      <h1 class="gtd-title">🚨 GIFT TAX DEPARTMENT™</h1>
+      <div class="gtd-sub">Special Raksha Bandhan Investigation Unit</div>
+    </header>
+
+    <div class="gtd-body">
+      <div class="case-card">
+        <h2>CASE FILE</h2>
+        <div class="case-row"><span>Subject</span><b>Dona</b></div>
+        <div class="case-row"><span>Complainant</span><b>Chhota Bhai Alraza</b></div>
+        <div class="case-row"><span>Case ID</span><b>RK-DONA-2026</b></div>
+        <div class="case-row"><span>Status</span><b class="status-pill">UNDER INVESTIGATION 🚨</b></div>
+      </div>
+
+      <div class="status-grid" id="statusGrid">
+        <div class="status-card"><span class="icon">✅</span><span class="label">Rakhi Successfully Tied</span></div>
+        <div class="status-card"><span class="icon">❤️</span><span class="label">Love &amp; Affection Detected</span></div>
+        <div class="status-card bad"><span class="icon">❌</span><span class="label">Gift Received</span></div>
+        <div class="status-card bad"><span class="icon">🚨</span><span class="label">Gift Status: Highly Suspicious</span></div>
+      </div>
+
+      <div class="cat-wrap cat-mini" data-mood="suspicious" id="cat2">
+        <svg viewBox="0 0 200 200">
+          <ellipse cx="100" cy="115" rx="72" ry="62" fill="#fff2e6" stroke="#e0b88a" stroke-width="3"/>
+          <path d="M40 70 L58 25 L82 62 Z" fill="#fff2e6" stroke="#e0b88a" stroke-width="3"/>
+          <path d="M160 70 L142 25 L118 62 Z" fill="#fff2e6" stroke="#e0b88a" stroke-width="3"/>
+          <path d="M52 62 L60 40 L74 58 Z" fill="#f6b9cf"/>
+          <path d="M148 62 L140 40 L126 58 Z" fill="#f6b9cf"/>
+          <ellipse class="cat-eye-normal" cx="75" cy="112" rx="9" ry="6" fill="#4a3846"/>
+          <ellipse class="cat-eye-normal" cx="125" cy="112" rx="9" ry="6" fill="#4a3846"/>
+          <path class="cat-eye-happy" d="M65 112 q10 -10 20 0" stroke="#4a3846" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path class="cat-eye-happy" d="M115 112 q10 -10 20 0" stroke="#4a3846" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path class="cat-brow-suspicious" d="M62 95 q13 -6 26 0" stroke="#4a3846" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path class="cat-brow-suspicious" d="M112 95 q13 -6 26 0" stroke="#4a3846" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path class="cat-mouth-neutral" d="M92 130 h16" stroke="#4a3846" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path class="cat-mouth-suspicious" d="M88 132 q12 -8 24 0" stroke="#4a3846" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path class="cat-mouth-happy" d="M85 126 q15 16 30 0" stroke="#4a3846" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <ellipse cx="60" cy="135" rx="10" ry="7" fill="#f6b9cf" opacity=".7"/>
+          <ellipse cx="140" cy="135" rx="10" ry="7" fill="#f6b9cf" opacity=".7"/>
+        </svg>
+      </div>
+
+      <div class="charges-title">OFFICIAL CHARGES</div>
+      <div class="charges-list">
+        <ol>
+          <li>Rakhi baandhkar gift na dene ki saazish.</li>
+          <li>Bhai ko emotional blackmail karna.</li>
+          <li>"Baad mein de dungi" kehkar case pending rakhna.</li>
+          <li>Gift Department ko unnecessarily wait karwana.</li>
+        </ol>
+      </div>
+
+      <div class="action-row" id="actionRow">
+        <button class="btn-gtd btn-innocent" id="innocentBtn">😇 I Am Innocent</button>
+        <button class="btn-gtd btn-settle" id="settleBtn">🎁 Settle The Case</button>
+      </div>
+
+      <div class="response-box" id="responseBox">
+        <p>Nice try, Dona. 😂</p>
+        <p>The evidence is overwhelming.</p>
+      </div>
+
+      <div class="investigate-box" id="investigateBox">
+        <div class="spinner"></div>
+        <p>Reviewing evidence...</p>
+      </div>
+
+      <div class="verdict-box" id="verdictBox">
+        <div class="vlabel">Case Settlement Amount</div>
+        <div class="vamount">₹1,001+</div>
+        <div class="vnote">Recommended compensation for emotional damages.</div>
+        <button class="btn-gtd btn-settle" id="acceptBtn">🎁 Accept The Verdict</button>
+      </div>
+
+      <div class="final-box" id="finalBox">
+        <h3>CASE CLOSED ❤️</h3>
+        <div class="fh1">Happy Raksha Bandhan, Dona!</div>
+        <div class="fsign">With love,<br>Your Chhota Bhai Alraza 🫶🏻</div>
+        <br>
+        <button class="replay-btn" id="replayBtn">Replay Experience ↻</button>
+      </div>
+
+      <div class="gtd-footer">Gift Department © 2026 — No refunds. 😂</div>
+    </div>
+  </section>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- ambient floating hearts / petals / sparkles ---------- */
+  const ambient = document.getElementById('ambient');
+  const symbols = [
+    {c:'heart-p', ch:'♥'},
+    {c:'petal-p', ch:'❀'},
+    {c:'spark-p', ch:'✦'}
+  ];
+  function spawnAmbient(){
+    ambient.innerHTML = '';
+    for(let i=0;i<22;i++){
+      const s = symbols[i % symbols.length];
+      const el = document.createElement('span');
+      el.className = s.c;
+      el.textContent = s.ch;
+      el.style.left = (Math.random()*100)+'vw';
+      el.style.animationDuration = (9 + Math.random()*10)+'s';
+      el.style.animationDelay = (Math.random()*10)+'s';
+      ambient.appendChild(el);
+    }
+  }
+  spawnAmbient();
+
+  /* ---------- staged reveal on page 1 ---------- */
+  function runRevealSequence(){
+    document.querySelectorAll('#page1 .reveal').forEach(el=>{
+      el.classList.remove('show');
+      const delay = parseInt(el.getAttribute('data-delay'),10) || 0;
+      clearTimeout(el._t);
+      el._t = setTimeout(()=> el.classList.add('show'), delay);
+    });
+  }
+  runRevealSequence();
+
+  /* ---------- heart burst helper ---------- */
+  function heartBurst(x,y,count){
+    const layer = document.getElementById('burstLayer');
+    for(let i=0;i<count;i++){
+      const h = document.createElement('div');
+      h.className = 'burst-heart';
+      h.textContent = '❤';
+      const angle = Math.random()*Math.PI*2;
+      const dist = 80 + Math.random()*160;
+      h.style.setProperty('--tx', Math.cos(angle)*dist + 'px');
+      h.style.setProperty('--ty', Math.sin(angle)*dist - 40 + 'px');
+      h.style.left = x + 'px';
+      h.style.top = y + 'px';
+      h.style.fontSize = (16 + Math.random()*14) + 'px';
+      layer.appendChild(h);
+      setTimeout(()=> h.remove(), 950);
+    }
+  }
+
+  /* ---------- confetti helper ---------- */
+  function confettiBurst(){
+    const layer = document.getElementById('confettiLayer');
+    const colors = ['#e0789e','#cf9f5f','#a9d3f5','#f6b9cf','#6b7a4f','#c1121f'];
+    for(let i=0;i<80;i++){
+      const c = document.createElement('div');
+      c.className = 'confetto';
+      const size = 6 + Math.random()*6;
+      c.style.width = size+'px';
+      c.style.height = (size*0.4)+'px';
+      c.style.background = colors[Math.floor(Math.random()*colors.length)];
+      c.style.left = (Math.random()*100)+'vw';
+      c.style.animationDuration = (2 + Math.random()*2)+'s';
+      c.style.animationDelay = (Math.random()*0.6)+'s';
+      layer.appendChild(c);
+      setTimeout(()=>c.remove(), 4200);
+    }
+  }
+
+  /* ---------- page transition: page1 -> page2 ---------- */
+  const continueBtn = document.getElementById('continueBtn');
+  const page1 = document.getElementById('page1');
+  const page2 = document.getElementById('page2');
+  const veil = document.getElementById('transitionVeil');
+
+  continueBtn.addEventListener('click', (e)=>{
+    heartBurst(e.clientX, e.clientY, 18);
+    veil.classList.add('show');
+    setTimeout(()=>{
+      page1.classList.remove('active');
+      page2.classList.add('active');
+      window.scrollTo({top:0, behavior:'instant'});
+      animateStatusCards();
+      setTimeout(()=> veil.classList.remove('show'), 60);
+    }, 620);
+  });
+
+  function animateStatusCards(){
+    document.querySelectorAll('.status-card').forEach((el,i)=>{
+      el.classList.remove('show');
+      setTimeout(()=> el.classList.add('show'), 200 + i*160);
+    });
+  }
+
+  /* ---------- Page 2 interactions ---------- */
+  const cat2 = document.getElementById('cat2');
+  const innocentBtn = document.getElementById('innocentBtn');
+  const settleBtn = document.getElementById('settleBtn');
+  const responseBox = document.getElementById('responseBox');
+  const investigateBox = document.getElementById('investigateBox');
+  const verdictBox = document.getElementById('verdictBox');
+  const acceptBtn = document.getElementById('acceptBtn');
+  const finalBox = document.getElementById('finalBox');
+  const actionRow = document.getElementById('actionRow');
+  const replayBtn = document.getElementById('replayBtn');
+
+  innocentBtn.addEventListener('click', ()=>{
+    innocentBtn.classList.remove('shake');
+    void innocentBtn.offsetWidth;
+    innocentBtn.classList.add('shake');
+    cat2.setAttribute('data-mood','suspicious');
+    responseBox.classList.add('show');
+  });
+
+  settleBtn.addEventListener('click', ()=>{
+    actionRow.style.display = 'none';
+    responseBox.classList.remove('show');
+    investigateBox.classList.add('show');
+    setTimeout(()=>{
+      investigateBox.classList.remove('show');
+      verdictBox.classList.add('show');
+    }, 1500);
+  });
+
+  acceptBtn.addEventListener('click', (e)=>{
+    confettiBurst();
+    heartBurst(e.clientX, e.clientY, 22);
+    cat2.setAttribute('data-mood','happy');
+    verdictBox.classList.remove('show');
+    finalBox.classList.add('show');
+  });
+
+  /* ---------- replay: back to page 1, fully reset ---------- */
+  replayBtn.addEventListener('click', ()=>{
+    // reset page2 state
+    finalBox.classList.remove('show');
+    verdictBox.classList.remove('show');
+    investigateBox.classList.remove('show');
+    responseBox.classList.remove('show');
+    actionRow.style.display = 'flex';
+    cat2.setAttribute('data-mood','suspicious');
+    document.querySelectorAll('.status-card').forEach(el=> el.classList.remove('show'));
+
+    page2.classList.remove('active');
+    page1.classList.add('active');
+    window.scrollTo({top:0, behavior:'instant'});
+    runRevealSequence();
+  });
+
+})();
+</script>
+</body>
+</html>
