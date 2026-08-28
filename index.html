@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+<title>Happy Raksha Bandhan, Dona 🫶🏻</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,500;1,600&family=Quicksand:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#FFF9F4;
+    --blush:#FFD9E6;
+    --peach:#FFCBB0;
+    --lavender:#E9E1FF;
+    --rose-deep:#B23A63;
+    --rose-line:#E8A7BE;
+    --text-dark:#4A3540;
+    --glass:rgba(255,255,255,0.45);
+    --glass-border:rgba(255,255,255,0.65);
+
+    --ai-bg-1:#120a2b;
+    --ai-bg-2:#301852;
+    --ai-bg-3:#4a1942;
+    --neon-pink:#ff5fb4;
+    --neon-cyan:#4ff0d8;
+    --neon-gold:#ffd166;
+    --ai-card:rgba(255,255,255,0.06);
+    --ai-card-border:rgba(255,255,255,0.14);
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;height:100%;overflow-x:hidden;}
+  body{
+    font-family:'Quicksand',sans-serif;
+    background:linear-gradient(160deg,var(--ivory),var(--blush) 45%,var(--peach) 75%,var(--lavender));
+    background-attachment:fixed;
+    min-height:100vh;
+    color:var(--text-dark);
+    position:relative;
+    overflow:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+
+  #app{position:relative; min-height:100vh; width:100%;}
+
+  /* ---------- particle layer ---------- */
+  #particles{position:fixed; inset:0; pointer-events:none; z-index:2; overflow:hidden;}
+  .particle{position:absolute; opacity:0; will-change:transform,opacity;}
+  @keyframes floatUp{
+    0%{transform:translateY(0) translateX(0) rotate(0deg) scale(0.7); opacity:0;}
+    10%{opacity:1;}
+    85%{opacity:0.9;}
+    100%{transform:translateY(-115vh) translateX(var(--drift,20px)) rotate(360deg) scale(1); opacity:0;}
+  }
+  @keyframes fallDown{
+    0%{transform:translateY(-10vh) translateX(0) rotate(0deg); opacity:0;}
+    8%{opacity:1;}
+    100%{transform:translateY(110vh) translateX(var(--drift,20px)) rotate(720deg); opacity:0.9;}
+  }
+
+  /* ---------- SCREEN 1 : emotional intro ---------- */
+  #screen1{
+    position:relative; z-index:3;
+    min-height:100vh; width:100%;
+    display:flex; align-items:center; justify-content:center;
+    padding:6vh 6vw;
+    transition:opacity 0.9s ease, transform 0.9s ease, filter 0.9s ease;
+  }
+  #screen1.leaving{opacity:0; transform:scale(1.08); filter:blur(6px); pointer-events:none;}
+
+  .card-glass{
+    max-width:640px; width:100%;
+    background:var(--glass);
+    border:1px solid var(--glass-border);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border-radius:32px;
+    padding:clamp(28px,6vw,56px);
+    box-shadow:0 20px 60px rgba(178,58,99,0.18), inset 0 1px 0 rgba(255,255,255,0.6);
+    text-align:center;
+    position:relative;
+    min-height:340px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+  }
+
+  .eyebrow{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic; font-weight:500;
+    letter-spacing:0.04em;
+    color:var(--rose-deep);
+    font-size:clamp(15px,3.4vw,19px);
+    opacity:0.85;
+  }
+
+  .beat{display:none; width:100%; animation:beatFade 0.9s ease both;}
+  .beat.active{display:flex; flex-direction:column; align-items:center; gap:16px;}
+  @keyframes beatFade{
+    0%{opacity:0; transform:translateY(14px);}
+    100%{opacity:1; transform:translateY(0);}
+  }
+
+  .headline{
+    font-family:'Cormorant Garamond', serif;
+    font-weight:600;
+    color:var(--rose-deep);
+    font-size:clamp(30px,7.5vw,52px);
+    line-height:1.1;
+    margin:0;
+  }
+  .headline .heart-mark{color:var(--rose-line);}
+
+  .subline{
+    font-family:'Quicksand',sans-serif;
+    font-weight:600;
+    font-size:clamp(17px,4vw,22px);
+    color:var(--text-dark);
+    margin:0;
+  }
+
+  .message-text{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(16px,3.8vw,21px);
+    line-height:1.65;
+    color:var(--text-dark);
+    max-width:480px;
+    margin:0;
+  }
+
+  .rakhi-wrap{margin:6px 0 4px;}
+
+  /* cute cat */
+  .cat-face{width:96px; height:96px; display:block;}
+  .cat-blink{transform-origin:center; animation:blink 3.6s infinite ease-in-out;}
+  @keyframes blink{
+    0%,88%,100%{transform:scaleY(1);}
+    92%{transform:scaleY(0.08);}
+  }
+  .tear{opacity:0; animation:tearDrop 2.4s infinite ease-in;}
+  @keyframes tearDrop{
+    0%{opacity:0; transform:translateY(0) scale(0.6);}
+    20%{opacity:0.9; transform:translateY(2px) scale(1);}
+    70%{opacity:0.9; transform:translateY(22px) scale(1);}
+    100%{opacity:0; transform:translateY(30px) scale(0.7);}
+  }
+
+  .btn{
+    font-family:'Quicksand',sans-serif;
+    font-weight:700;
+    font-size:clamp(14px,3.6vw,17px);
+    border:none; cursor:pointer;
+    padding:14px 30px;
+    border-radius:999px;
+    color:#fff;
+    background:linear-gradient(120deg,var(--rose-deep),#E0658C);
+    box-shadow:0 10px 24px rgba(178,58,99,0.35);
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+    position:relative; overflow:visible;
+  }
+  .btn:hover{transform:translateY(-2px) scale(1.03); box-shadow:0 14px 30px rgba(178,58,99,0.42);}
+  .btn:active{transform:translateY(0) scale(0.98);}
+  .btn-ghost{
+    background:transparent;
+    color:var(--rose-deep);
+    border:2px solid var(--rose-line);
+    box-shadow:none;
+  }
+  .btn-ghost:hover{background:rgba(178,58,99,0.08);}
+
+  /* ---------- SCREEN 2 : AI dashboard ---------- */
+  #screen2{
+    position:fixed; inset:0; z-index:5;
+    display:none;
+    min-height:100vh; width:100%;
+    background:
+      radial-gradient(circle at 15% 15%, rgba(255,95,180,0.18), transparent 45%),
+      radial-gradient(circle at 85% 85%, rgba(79,240,216,0.16), transparent 45%),
+      linear-gradient(160deg,var(--ai-bg-1),var(--ai-bg-2) 55%,var(--ai-bg-3));
+    color:#f4f0ff;
+    font-family:'Space Grotesk',sans-serif;
+    overflow-y:auto;
+    opacity:0;
+    transform:scale(0.96);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+  }
+  #screen2.visible{display:block; opacity:1; transform:scale(1);}
+  .grid-overlay{
+    position:absolute; inset:0; pointer-events:none; opacity:0.25;
+    background-image:
+      linear-gradient(rgba(79,240,216,0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79,240,216,0.12) 1px, transparent 1px);
+    background-size:38px 38px;
+    mask-image:radial-gradient(circle at 50% 20%, black, transparent 75%);
+  }
+  .dash-inner{
+    position:relative; z-index:2;
+    max-width:760px; margin:0 auto;
+    padding:7vh 6vw 10vh;
+    display:flex; flex-direction:column; align-items:center; gap:22px;
+    text-align:center;
+  }
+  .dash-title{
+    font-weight:700; letter-spacing:0.01em;
+    font-size:clamp(26px,7vw,42px);
+    background:linear-gradient(90deg,var(--neon-cyan),var(--neon-pink));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    margin:0;
+  }
+  .dash-sub{
+    font-family:'JetBrains Mono',monospace;
+    font-size:clamp(11.5px,3vw,14px);
+    color:#c9c2ff;
+    opacity:0.85;
+    max-width:480px;
+    margin:0 0 6px;
+    line-height:1.5;
+  }
+
+  .ai-cat{width:112px; height:112px;}
+
+  .cards{
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin-top:6px;
+  }
+  @media (max-width:520px){ .cards{grid-template-columns:1fr;} }
+  .card{
+    background:var(--ai-card);
+    border:1px solid var(--ai-card-border);
+    border-radius:18px;
+    padding:16px 16px;
+    backdrop-filter:blur(10px);
+    text-align:left;
+  }
+  .card-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px; letter-spacing:0.03em;
+    color:var(--neon-cyan);
+    margin:0 0 8px;
+    text-transform:uppercase;
+  }
+  .stars{font-size:20px; letter-spacing:2px; color:var(--neon-gold);}
+  .bar-track{width:100%; height:10px; border-radius:999px; background:rgba(255,255,255,0.12); overflow:hidden;}
+  .bar-fill{height:100%; border-radius:999px; width:0%; transition:width 1.4s cubic-bezier(.2,.8,.2,1);}
+  .bar-fill.pink{background:linear-gradient(90deg,var(--neon-pink),#ffa5d6);}
+  .bar-fill.cyan{background:linear-gradient(90deg,var(--neon-cyan),#a4fff0);}
+  .card-value{font-family:'JetBrains Mono',monospace; font-size:13px; margin-top:6px; opacity:0.9;}
+  .locked{font-family:'JetBrains Mono',monospace; font-size:15px; color:var(--neon-gold); animation:flicker 2.6s infinite;}
+  @keyframes flicker{
+    0%,100%{opacity:1;} 48%{opacity:1;} 50%{opacity:0.35;} 52%{opacity:1;}
+  }
+
+  .calc-btn{
+    margin-top:8px;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:700; font-size:clamp(14px,3.6vw,17px);
+    color:#120a2b;
+    background:linear-gradient(100deg,var(--neon-cyan),var(--neon-pink));
+    border:none; border-radius:999px;
+    padding:15px 34px; cursor:pointer;
+    box-shadow:0 0 0 rgba(79,240,216,0.5);
+    animation:pulseGlow 2.4s infinite;
+    transition:transform 0.2s ease;
+  }
+  .calc-btn:hover{transform:translateY(-2px) scale(1.03);}
+  .calc-btn:disabled{opacity:0.6; cursor:default; animation:none;}
+  @keyframes pulseGlow{
+    0%,100%{box-shadow:0 0 14px rgba(79,240,216,0.35);}
+    50%{box-shadow:0 0 28px rgba(255,95,180,0.5);}
+  }
+
+  .calc-panel{width:100%; display:none; flex-direction:column; align-items:center; gap:14px; margin-top:8px;}
+  .calc-panel.active{display:flex;}
+  .scan-cat{width:88px; height:88px; animation:bounce 0.9s infinite ease-in-out;}
+  @keyframes bounce{0%,100%{transform:translateY(0) rotate(-3deg);} 50%{transform:translateY(-14px) rotate(3deg);}}
+  .scan-line{
+    width:100%; max-width:320px; height:2px; background:var(--neon-cyan);
+    box-shadow:0 0 12px var(--neon-cyan);
+    position:relative; overflow:hidden; border-radius:2px;
+  }
+  .status-text{
+    font-family:'JetBrains Mono',monospace;
+    font-size:clamp(13px,3.4vw,15px);
+    color:var(--neon-cyan);
+    min-height:20px;
+  }
+  .calc-track{width:100%; max-width:320px; height:8px; border-radius:999px; background:rgba(255,255,255,0.12); overflow:hidden;}
+  .calc-fill{height:100%; width:0%; border-radius:999px; background:linear-gradient(90deg,var(--neon-cyan),var(--neon-pink)); transition:width 4.6s linear;}
+
+  .result-panel{width:100%; display:none; flex-direction:column; align-items:center; gap:10px; margin-top:6px;}
+  .result-panel.active{display:flex; animation:popIn 0.7s cubic-bezier(.2,1.4,.4,1) both;}
+  @keyframes popIn{0%{opacity:0; transform:scale(0.6) rotate(-4deg);} 60%{opacity:1; transform:scale(1.08) rotate(1deg);} 100%{opacity:1; transform:scale(1) rotate(0deg);}}
+  .result-tag{font-family:'JetBrains Mono',monospace; font-size:14px; color:var(--neon-gold); letter-spacing:0.05em;}
+  .result-amount{
+    font-weight:700; font-size:clamp(46px,14vw,74px);
+    background:linear-gradient(90deg,var(--neon-gold),var(--neon-pink));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    margin:0;
+  }
+  .result-sub{font-family:'JetBrains Mono',monospace; font-size:13px; color:#d8d2ff;}
+  .result-warn{
+    font-family:'JetBrains Mono',monospace; font-size:12.5px; color:#ffb3c6;
+    background:rgba(255,95,180,0.12); border:1px solid rgba(255,95,180,0.35);
+    padding:10px 14px; border-radius:12px; line-height:1.5; margin-top:4px;
+  }
+
+  .twist-panel{width:100%; display:none; flex-direction:column; align-items:center; gap:16px; margin-top:10px;}
+  .twist-panel.active{display:flex;}
+  .twist-text{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(18px,5vw,26px); min-height:34px;}
+
+  .final-panel{width:100%; display:none; flex-direction:column; align-items:center; gap:14px; margin-top:6px;}
+  .final-panel.active{display:flex;}
+  .final-line{font-family:'Cormorant Garamond',serif; font-style:italic; font-weight:600; font-size:clamp(20px,5.5vw,28px); color:#ffe3ef; margin:0;}
+  .final-sign{font-family:'Quicksand',sans-serif; font-weight:600; font-size:clamp(15px,4vw,18px); color:var(--neon-cyan); margin:0;}
+
+  .fade-block{display:none; width:100%; flex-direction:column; align-items:center; gap:14px; animation:beatFade 0.7s ease both;}
+  .fade-block.active{display:flex;}
+</style>
+</head>
+<body>
+
+<div id="particles"></div>
+
+<div id="app">
+
+  <!-- ============ SCREEN 1 : EMOTIONAL INTRO ============ -->
+  <section id="screen1">
+    <div class="card-glass">
+
+      <!-- Rakhi illustration shown throughout page 1 -->
+      <div class="rakhi-wrap">
+        <svg width="86" height="86" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="22" fill="#FFD9E6" stroke="#B23A63" stroke-width="2.5"/>
+          <circle cx="50" cy="50" r="10" fill="#FFF9F4" stroke="#B23A63" stroke-width="2"/>
+          <path d="M50 28 L54 40 L50 36 L46 40 Z" fill="#B23A63"/>
+          <g stroke="#E8A7BE" stroke-width="2">
+            <path d="M20 50 Q35 40 45 50 Q35 60 20 50 Z" fill="#FFCBB0"/>
+            <path d="M80 50 Q65 40 55 50 Q65 60 80 50 Z" fill="#FFCBB0"/>
+          </g>
+          <circle cx="50" cy="50" r="4" fill="#B23A63"/>
+        </svg>
+      </div>
+
+      <!-- Beat 1 -->
+      <div class="beat active" data-beat="1">
+        <p class="eyebrow">For Someone Very Special ♡</p>
+      </div>
+
+      <!-- Beat 2 -->
+      <div class="beat" data-beat="2">
+        <h1 class="headline">Happy Raksha Bandhan <span class="heart-mark">♡</span></h1>
+      </div>
+
+      <!-- Beat 3 -->
+      <div class="beat" data-beat="3">
+        <p class="subline">from your Chhota Bhai, Alraza 🫶🏻</p>
+      </div>
+
+      <!-- Beat 4 : emotional message -->
+      <div class="beat" data-beat="4">
+        <p class="message-text">Some bonds don't need to be explained.<br>They just quietly become a beautiful part of your life.<br>And no matter how much we tease each other,<br>I'm genuinely lucky to have you as my sister. ❤️</p>
+      </div>
+
+      <!-- Beat 5 : cat + closing line + button -->
+      <div class="beat" data-beat="5">
+        <svg class="cat-face" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="60" cy="65" rx="42" ry="38" fill="#FFF3EC" stroke="#B23A63" stroke-width="2.5"/>
+          <path d="M25 40 L35 15 L50 42 Z" fill="#FFF3EC" stroke="#B23A63" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M95 40 L85 15 L70 42 Z" fill="#FFF3EC" stroke="#B23A63" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M30 38 L36 24 L44 40 Z" fill="#FFCBB0"/>
+          <path d="M90 38 L84 24 L76 40 Z" fill="#FFCBB0"/>
+          <g class="cat-blink">
+            <ellipse cx="45" cy="62" rx="6" ry="8" fill="#4A3540"/>
+            <ellipse cx="75" cy="62" rx="6" ry="8" fill="#4A3540"/>
+            <circle cx="47" cy="59" r="1.6" fill="#fff"/>
+            <circle cx="77" cy="59" r="1.6" fill="#fff"/>
+          </g>
+          <ellipse cx="60" cy="76" rx="4" ry="3" fill="#E8899F"/>
+          <path d="M55 79 Q60 84 65 79" stroke="#4A3540" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <ellipse cx="45" cy="75" rx="1.4" ry="10" fill="#4A3540" class="tear" style="animation-delay:0.4s"/>
+          <ellipse cx="30" cy="76" rx="10" ry="3" fill="#FFCBB0" opacity="0.7"/>
+          <ellipse cx="90" cy="76" rx="10" ry="3" fill="#FFCBB0" opacity="0.7"/>
+        </svg>
+        <p class="subline" style="margin-top:-4px;">Okay... enough emotions.<br>I made something especially for you. 👀</p>
+      </div>
+
+      <!-- CTA -->
+      <div id="ctaWrap" style="display:none; margin-top:6px;">
+        <button class="btn" id="openSurpriseBtn">Open Your Surprise →</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ SCREEN 2 : AI GIFT CALCULATOR ============ -->
+  <section id="screen2">
+    <div class="grid-overlay"></div>
+    <div class="dash-inner">
+
+      <!-- default dashboard view -->
+      <div id="dashboardView" class="fade-block active">
+        <svg class="ai-cat" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <rect x="42" y="18" width="6" height="14" fill="var(--neon-cyan)"/>
+          <circle cx="45" cy="16" r="4" fill="var(--neon-pink)"/>
+          <ellipse cx="60" cy="65" rx="40" ry="36" fill="#1c1240" stroke="var(--neon-cyan)" stroke-width="2"/>
+          <path d="M28 40 L38 16 L52 42 Z" fill="#1c1240" stroke="var(--neon-cyan)" stroke-width="2"/>
+          <path d="M92 40 L82 16 L68 42 Z" fill="#1c1240" stroke="var(--neon-cyan)" stroke-width="2"/>
+          <g class="cat-blink">
+            <circle cx="46" cy="62" r="6" fill="var(--neon-cyan)"/>
+            <circle cx="74" cy="62" r="6" fill="var(--neon-pink)"/>
+          </g>
+          <path d="M50 78 Q60 84 70 78" stroke="var(--neon-cyan)" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M20 65 H30 M90 65 H100" stroke="var(--neon-pink)" stroke-width="1.5"/>
+        </svg>
+
+        <h1 class="dash-title">🧮 DONA GIFT CALCULATOR™</h1>
+        <p class="dash-sub">Advanced Artificial Intelligence for Calculating How Much Gift Dona Deserves</p>
+
+        <div class="cards">
+          <div class="card">
+            <p class="card-label">Rakhi Quality</p>
+            <div class="stars">★★★★★</div>
+          </div>
+          <div class="card">
+            <p class="card-label">Sisterhood Level</p>
+            <div class="bar-track"><div class="bar-fill cyan" id="bar1"></div></div>
+            <p class="card-value">100%</p>
+          </div>
+          <div class="card">
+            <p class="card-label">Emotional Blackmail Potential</p>
+            <div class="bar-track"><div class="bar-fill pink" id="bar2"></div></div>
+            <p class="card-value">92%</p>
+          </div>
+          <div class="card">
+            <p class="card-label">Previous Gift History</p>
+            <p class="card-value">Insufficient Evidence 💀</p>
+          </div>
+          <div class="card" style="grid-column:1/-1;">
+            <p class="card-label">Bank Balance Confidence</p>
+            <p class="locked">CLASSIFIED 🔒</p>
+          </div>
+        </div>
+
+        <button class="calc-btn" id="calcBtn">CALCULATE MY GIFT</button>
+      </div>
+
+      <!-- calculating view -->
+      <div id="calcView" class="fade-block">
+        <svg class="scan-cat" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="60" cy="65" rx="38" ry="34" fill="#1c1240" stroke="var(--neon-pink)" stroke-width="2"/>
+          <path d="M30 40 L40 18 L52 42 Z" fill="#1c1240" stroke="var(--neon-pink)" stroke-width="2"/>
+          <path d="M90 40 L80 18 L68 42 Z" fill="#1c1240" stroke="var(--neon-pink)" stroke-width="2"/>
+          <circle cx="46" cy="62" r="5" fill="var(--neon-cyan)"/>
+          <circle cx="74" cy="62" r="5" fill="var(--neon-cyan)"/>
+        </svg>
+        <div class="scan-line"></div>
+        <p class="status-text" id="statusText">Scanning sister behaviour...</p>
+        <div class="calc-track"><div class="calc-fill" id="calcFill"></div></div>
+      </div>
+
+      <!-- result view -->
+      <div id="resultView" class="fade-block">
+        <p class="result-tag">🎁 RECOMMENDED GIFT</p>
+        <p class="result-amount">₹2,501</p>
+        <p class="result-sub">Minimum acceptable: ₹1,001</p>
+        <p class="result-warn">Below ₹501 =<br>Relationship Status → UNDER REVIEW ⚠️</p>
+        <button class="btn" style="margin-top:6px; background:linear-gradient(120deg,var(--neon-pink),#c86bff); box-shadow:0 10px 24px rgba(255,95,180,0.35);" id="agreeBtn">Okay, I'll Give The Gift 😂</button>
+      </div>
+
+      <!-- twist view -->
+      <div id="twistView" class="fade-block">
+        <svg width="96" height="96" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="60" cy="65" rx="38" ry="34" fill="#1c1240" stroke="var(--neon-gold)" stroke-width="2"/>
+          <path d="M30 40 L40 18 L52 42 Z" fill="#1c1240" stroke="var(--neon-gold)" stroke-width="2"/>
+          <path d="M90 40 L80 18 L68 42 Z" fill="#1c1240" stroke="var(--neon-gold)" stroke-width="2"/>
+          <path d="M40 62 h12" stroke="var(--neon-gold)" stroke-width="4" stroke-linecap="round"/>
+          <path d="M68 62 h12" stroke="var(--neon-gold)" stroke-width="4" stroke-linecap="round"/>
+          <path d="M48 80 Q60 74 72 80" stroke="var(--neon-gold)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <p class="twist-text" id="twistText">WAIT.</p>
+        <button class="btn btn-ghost" id="thinkBtn" style="display:none; border-color:var(--neon-gold); color:var(--neon-gold);">Fine, I'll Think About It</button>
+      </div>
+
+      <!-- final view -->
+      <div id="finalView" class="fade-block">
+        <svg width="100" height="100" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="60" cy="65" rx="38" ry="34" fill="#2a1b52" stroke="var(--neon-cyan)" stroke-width="2"/>
+          <path d="M30 40 L40 18 L52 42 Z" fill="#2a1b52" stroke="var(--neon-cyan)" stroke-width="2"/>
+          <path d="M90 40 L80 18 L68 42 Z" fill="#2a1b52" stroke="var(--neon-cyan)" stroke-width="2"/>
+          <path d="M40 66 Q46 58 52 66" stroke="var(--neon-cyan)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M68 66 Q74 58 80 66" stroke="var(--neon-cyan)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M50 82 Q60 88 70 82" stroke="var(--neon-cyan)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="46" cy="74" rx="2" ry="9" fill="#a4e8ff" class="tear"/>
+          <ellipse cx="74" cy="74" rx="2" ry="9" fill="#a4e8ff" class="tear" style="animation-delay:0.9s"/>
+        </svg>
+        <p class="final-line" id="finalLine1" style="opacity:0;">That's what I thought. 🥺</p>
+        <div id="finalHappy" style="opacity:0; display:flex; flex-direction:column; align-items:center; gap:6px;">
+          <p class="final-line">Happy Raksha Bandhan, Dona ❤️</p>
+          <p class="final-sign">Your Chhota Bhai, Alraza 🫶🏻</p>
+          <button class="btn btn-ghost" id="replayBtn" style="margin-top:10px; border-color:var(--neon-cyan); color:var(--neon-cyan);">Replay ↻</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------------- particle engine ---------------- */
+  const particleLayer = document.getElementById('particles');
+  function spawnParticle(kind, opts){
+    opts = opts || {};
+    const el = document.createElement('div');
+    el.className = 'particle';
+    el.textContent = kind;
+    const size = opts.size || (14 + Math.random()*16);
+    const left = opts.left != null ? opts.left : Math.random()*100;
+    const duration = opts.duration || (5 + Math.random()*4);
+    const drift = (Math.random()*80-40) + 'px';
+    const rise = opts.rise !== false;
+    el.style.left = left + 'vw';
+    el.style.fontSize = size + 'px';
+    el.style.setProperty('--drift', drift);
+    el.style.top = rise ? '100%' : '-8%';
+    el.style.animation = (rise ? 'floatUp' : 'fallDown') + ' ' + duration + 's ease-in forwards';
+    particleLayer.appendChild(el);
+    setTimeout(()=> el.remove(), duration*1000 + 200);
+  }
+
+  let ambientTimer = null;
+  function startAmbient(){
+    stopAmbient();
+    const pool = ['♡','✧','🌸','✨'];
+    ambientTimer = setInterval(()=>{
+      spawnParticle(pool[Math.floor(Math.random()*pool.length)], {duration:6+Math.random()*4});
+    }, 550);
+  }
+  function stopAmbient(){ if(ambientTimer){clearInterval(ambientTimer); ambientTimer=null;} }
+
+  function burst(kind, count, rise){
+    for(let i=0;i<count;i++){
+      setTimeout(()=> spawnParticle(kind, {rise: rise, duration: 2.6+Math.random()*2.2}), i*40);
+    }
+  }
+
+  /* ---------------- SCREEN 1 sequence ---------------- */
+  const beats = Array.from(document.querySelectorAll('.beat'));
+  const ctaWrap = document.getElementById('ctaWrap');
+  const timings = [1800, 2200, 2000, 3600, 2600]; // display time per beat before advancing
+
+  function playIntro(i){
+    if(i >= beats.length){
+      ctaWrap.style.display = 'block';
+      ctaWrap.style.animation = 'beatFade 0.8s ease both';
+      return;
+    }
+    beats.forEach(b => b.classList.remove('active'));
+    beats[i].classList.add('active');
+    setTimeout(()=> playIntro(i+1), timings[i]);
+  }
+
+  startAmbient();
+  setTimeout(()=> playIntro(0), 100);
+
+  /* ---------------- transition to screen 2 ---------------- */
+  const screen1 = document.getElementById('screen1');
+  const screen2 = document.getElementById('screen2');
+  const openBtn = document.getElementById('openSurpriseBtn');
+
+  openBtn.addEventListener('click', function(){
+    burst('❤️', 22, true);
+    stopAmbient();
+    screen1.classList.add('leaving');
+    setTimeout(()=>{
+      screen1.style.display = 'none';
+      screen2.classList.add('visible');
+      animateBars();
+    }, 850);
+  });
+
+  function animateBars(){
+    requestAnimationFrame(()=>{
+      document.getElementById('bar1').style.width = '100%';
+      document.getElementById('bar2').style.width = '92%';
+    });
+  }
+
+  /* ---------------- SCREEN 2 : views ---------------- */
+  const views = {
+    dashboard: document.getElementById('dashboardView'),
+    calc: document.getElementById('calcView'),
+    result: document.getElementById('resultView'),
+    twist: document.getElementById('twistView'),
+    final: document.getElementById('finalView')
+  };
+  function showView(name){
+    Object.values(views).forEach(v => v.classList.remove('active'));
+    views[name].classList.add('active');
+  }
+
+  /* --- calculation sequence --- */
+  const calcBtn = document.getElementById('calcBtn');
+  const statusText = document.getElementById('statusText');
+  const calcFill = document.getElementById('calcFill');
+  const messages = [
+    "Scanning sister behaviour...",
+    "Checking Rakhi quality...",
+    "Analysing emotional damage...",
+    "Consulting financial experts...",
+    "Checking Alraza's bank balance...",
+    "Contacting RBI...",
+    "Finalising verdict..."
+  ];
+
+  calcBtn.addEventListener('click', function(){
+    calcBtn.disabled = true;
+    showView('calc');
+    let idx = 0;
+    statusText.textContent = messages[0];
+    requestAnimationFrame(()=>{ calcFill.style.width = '100%'; });
+    const interval = setInterval(()=>{
+      idx++;
+      if(idx < messages.length){
+        statusText.textContent = messages[idx];
+      } else {
+        clearInterval(interval);
+        setTimeout(()=>{
+          showView('result');
+          burst('₹', 16, false);
+          burst('🎉', 10, false);
+        }, 250);
+      }
+    }, 650);
+  });
+
+  /* --- "okay I'll give the gift" twist --- */
+  const agreeBtn = document.getElementById('agreeBtn');
+  const twistText = document.getElementById('twistText');
+  const thinkBtn = document.getElementById('thinkBtn');
+  const twistLines = [
+    "WAIT.",
+    "Why are YOU agreeing to give a gift?",
+    "THIS WEBSITE WAS MADE BY ALRAZA.",
+    "Nice try, Dona. 😂"
+  ];
+
+  agreeBtn.addEventListener('click', function(){
+    showView('twist');
+    thinkBtn.style.display = 'none';
+    let i = 0;
+    twistText.style.opacity = 1;
+    twistText.textContent = twistLines[0];
+    const step = () => {
+      i++;
+      if(i < twistLines.length){
+        twistText.style.opacity = 0;
+        setTimeout(()=>{
+          twistText.textContent = twistLines[i];
+          twistText.style.opacity = 1;
+          setTimeout(step, 1150);
+        }, 300);
+      } else {
+        thinkBtn.style.display = 'inline-block';
+        thinkBtn.style.animation = 'beatFade 0.6s ease both';
+      }
+    };
+    setTimeout(step, 1150);
+  });
+
+  /* --- "fine I'll think about it" -> crying cat -> final reveal --- */
+  const thinkBtn2 = document.getElementById('thinkBtn');
+  const finalLine1 = document.getElementById('finalLine1');
+  const finalHappy = document.getElementById('finalHappy');
+
+  thinkBtn2.addEventListener('click', function(){
+    showView('final');
+    finalLine1.style.transition = 'opacity 0.8s ease';
+    finalHappy.style.transition = 'opacity 0.8s ease';
+    requestAnimationFrame(()=>{ finalLine1.style.opacity = 1; });
+    setTimeout(()=>{
+      finalHappy.style.opacity = 1;
+      burst('❤️', 18, false);
+      burst('✨', 10, false);
+    }, 2200);
+  });
+
+  /* --- replay --- */
+  document.getElementById('replayBtn').addEventListener('click', function(){
+    // reset screen 2 views
+    showView('dashboard');
+    calcBtn.disabled = false;
+    calcFill.style.width = '0%';
+    document.getElementById('bar1').style.width = '0%';
+    document.getElementById('bar2').style.width = '0%';
+    finalLine1.style.opacity = 0;
+    finalHappy.style.opacity = 0;
+    thinkBtn2.style.display = 'none';
+
+    // reset screen 1
+    screen2.classList.remove('visible');
+    screen1.style.display = 'flex';
+    screen1.classList.remove('leaving');
+    beats.forEach(b => b.classList.remove('active'));
+    ctaWrap.style.display = 'none';
+    startAmbient();
+    setTimeout(()=> playIntro(0), 200);
+  });
+
+})();
+</script>
+
+</body>
+</html>
